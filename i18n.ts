@@ -3,6 +3,10 @@ import { notFound } from "next/navigation";
 
 export const locales = ["en", "de"];
 
+export type I18nParams = {
+  locale: string;
+};
+
 export default getRequestConfig(async ({ locale }) => {
   if (!locales.includes(locale as any)) notFound();
 

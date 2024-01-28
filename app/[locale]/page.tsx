@@ -1,10 +1,18 @@
-import { LayoutProps, StaticLayoutParams } from "@/app/[locale]/layout";
+import { StaticLayoutParams } from "@/app/[locale]/layout";
+import { sdk } from "@/helper/gql";
 import { useTranslations } from "next-intl";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 
-interface StaticIndexParams extends StaticLayoutParams {}
+async function getData() {
+  const data = await sdk.GetUserById({ userId: "1" });
 
-interface IndexPageProps extends LayoutProps {}
+  return {
+    username: data.user ? data.user.username : "unknown",
+    email: data.user ? data.user.email : "unknown",
+  };
+}
+
+interface StaticIndexParams extends StaticLayoutParams {}
 
 export async function generateMetadata({
   params: { locale },
@@ -16,10 +24,17 @@ export async function generateMetadata({
   };
 }
 
-export default function IndexPage({
+export default async function Page({
   params: { locale },
 }: Readonly<StaticIndexParams>) {
+  const { username, email } = await getData();
   unstable_setRequestLocale(locale);
   const t = useTranslations("Index");
-  return <h1>{t("title")}</h1>;
+  return (
+    <>
+      <h1>{t("title")}</h1>
+      <p>{username}</p>
+      <p>{email}</p>
+    </>
+  );
 }

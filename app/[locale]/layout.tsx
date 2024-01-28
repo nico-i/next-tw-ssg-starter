@@ -1,10 +1,8 @@
-import { locales } from "@/i18n";
+import { I18nParams, locales } from "@/i18n";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 export interface StaticLayoutParams {
-  params: {
-    locale: string;
-  };
+  params: I18nParams;
 }
 
 export interface LayoutProps extends StaticLayoutParams {
