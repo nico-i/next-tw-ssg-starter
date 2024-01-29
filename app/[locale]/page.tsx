@@ -1,14 +1,15 @@
 import { StaticLayoutParams } from "@/app/[locale]/layout";
 import { sdk } from "@/helper/gql";
-import { useTranslations } from "next-intl";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 
 async function getData() {
-  const data = await sdk.GetUserById({ userId: "1" });
+  const getSpaceShipsRes = await sdk.GetSpaceShips();
 
   return {
-    username: data.user ? data.user.username : "unknown",
-    email: data.user ? data.user.email : "unknown",
+    spaceShipNames:
+      getSpaceShipsRes.allStarships?.starships?.map(
+        (starship) => starship?.name,
+      ) ?? [],
   };
 }
 
@@ -27,14 +28,14 @@ export async function generateMetadata({
 export default async function Page({
   params: { locale },
 }: Readonly<StaticIndexParams>) {
-  const { username, email } = await getData();
   unstable_setRequestLocale(locale);
-  const t = useTranslations("Index");
+
+  const { spaceShipNames } = await getData();
+  const t = await getTranslations("Index");
   return (
     <>
-      <h1>{t("title")}</h1>
-      <p>{username}</p>
-      <p>{email}</p>
+      <h1 className="text-2xl">{t("title")}</h1>
+      <p>{spaceShipNames.join(", ")}</p>
     </>
   );
 }

@@ -1,0 +1,7 @@
+query GetSpaceShips {
+  allStarships {
+    starships {
+      name
+    }
+  }
+}

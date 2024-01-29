@@ -2,8 +2,9 @@ import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
   overwrite: true,
-      schema: "./graphql/schema.graphql",
-      documents: "**/graphql/**/*.graphql",
+  schema:
+    "https://raw.githubusercontent.com/graphql/swapi-graphql/master/schema.graphql",
+  documents: "**/graphql/**/*.graphql",
   generates: {
     "__generated__/gql.ts": {
       plugins: [
