@@ -34,7 +34,7 @@ export default async function Page({
   const t = await getTranslations("Index");
   return (
     <>
-      <h1 className="text-2xl">{t("title")}</h1>
+      <h1 className="text-5xl">{t("title")}</h1>
       <p>{spaceShipNames.join(", ")}</p>
     </>
   );
