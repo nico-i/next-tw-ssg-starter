@@ -1,2 +1,3 @@
 - Ensure git-spend is installed
 - Enure MY_RELEASE_PLEASE_TOKEN is set in github secrets
+- https://github.com/nektos/act?tab=readme-ov-file for gh action debugging

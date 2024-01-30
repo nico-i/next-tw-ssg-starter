@@ -10,13 +10,15 @@
     "start": "next start",
     "test": "npx playwright test",
     "lint": "next lint",
+    "lint:types": "tsc --noEmit",
     "prepare": "husky",
     "codegen": "npx graphql-codegen"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
-      "prettier --write"
+      "prettier --write",
+      "tsc --noEmit"
     ],
     "*.{css,scss}": [
       "prettier --write"
