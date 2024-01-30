@@ -5,6 +5,7 @@ on:
     workflows: ["Webhook Triggered Workflow"]
     types:
       - completed
+  workflow_dispatch:
 
 jobs:
   run-psi-svg:
