@@ -8,6 +8,7 @@
     "build": "next build",
     "build:analyze": "dotenvx run --env-file=.env.analyze -- pnpm build",
     "start": "next start",
+    "test": "npx playwright test",
     "lint": "next lint",
     "prepare": "husky",
     "codegen": "npx graphql-codegen"
